@@ -39,6 +39,7 @@ export default function Home({
   products,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   console.log('Products ---->', products)
+  console.log('I only want to see the one hoodie')
   return (
     <>
       <Grid variant="filled">

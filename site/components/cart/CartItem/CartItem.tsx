@@ -93,7 +93,7 @@ const CartItem = ({
                 width={150}
                 height={150}
                 src={item.variant.image?.url || placeholderImg}
-                alt={item.variant.image?.altText || "Product Image"}
+                alt={item.variant.image?.altText || 'Product Image'}
                 unoptimized
               />
             </a>
@@ -115,21 +115,10 @@ const CartItem = ({
               {options.map((option: ItemOption, i: number) => (
                 <div
                   key={`${item.id}-${option.name}`}
-                  className="text-sm font-semibold text-accent-7 inline-flex items-center justify-center"
+                  className="text-sm font-semibold text-accent-7 items-center justify-center"
                 >
-                  {option.name}
-                  {option.name === 'Color' ? (
-                    <span
-                      className="mx-2 rounded-full bg-transparent border w-5 h-5 p-1 text-accent-9 inline-flex items-center justify-center overflow-hidden"
-                      style={{
-                        backgroundColor: `${option.value}`,
-                      }}
-                    ></span>
-                  ) : (
-                    <span className="mx-2 rounded-full bg-transparent border h-5 p-1 text-accent-9 inline-flex items-center justify-center overflow-hidden">
-                      {option.value}
-                    </span>
-                  )}
+                  <label className="variant-label">{option.name}:</label>{' '}
+                  <span className="variant-value">{option.value}</span>
                   {i === options.length - 1 ? '' : <span className="mr-3" />}
                 </div>
               ))}

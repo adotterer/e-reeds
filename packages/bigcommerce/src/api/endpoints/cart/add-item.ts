@@ -26,6 +26,37 @@ const addItem: CartEndpoint['handlers']['addItem'] = async ({
         : {}),
     }),
   }
+  // console.log('......')
+  // console.log('......')
+  // console.log('......')
+  // console.log('......')
+  // console.log('......')
+  // console.log('......')
+  // console.log('......')
+  // console.log('......')
+  // console.log('......')
+  // console.log('......')
+  // console.log('......')
+  // console.log('......')
+  // console.log('......')
+  // console.log('......')
+  // console.log('......')
+  // console.log(options, 'OPTIONS'.padStart(30, '-'))
+  // console.log('......')
+  // console.log('......')
+  // console.log('......')
+  // console.log('......')
+  // console.log('......')
+  // console.log('......')
+  // console.log('......')
+  // console.log('......')
+  // console.log('......')
+  // console.log('......')
+  // console.log('......')
+  // console.log('......')
+  // console.log('......')
+  // console.log('......')
+  // console.log('......')
   const { data } = cartId
     ? await config.storeApiFetch(
         `/v3/carts/${cartId}/items?include=line_items.physical_items.options,line_items.digital_items.options`,

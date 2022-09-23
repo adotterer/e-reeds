@@ -4,3 +4,18 @@
 .modifiers-dropdowns select {
   padding: 1rem;
 }
+.quantityLabel {
+  font-size: 1.2em;
+  margin-right: 0.5rem;
+}
+
+#pdp-quantity {
+  border: 1px solid lightgrey;
+  padding: 0.4rem;
+  font-size: 1em;
+  margin: 0.8rem;
+}
+
+#quanAddContainer {
+  margin: 0.5rem;
+}

@@ -36,8 +36,8 @@ const CartItem = ({
   const updateItem = useUpdateItem({ item })
 
   const { price } = usePrice({
-    amount: item.variant.price * item.quantity,
-    baseAmount: item.variant.listPrice * item.quantity,
+    amount: item.variant.price,
+    baseAmount: item.variant.listPrice,
     currencyCode,
   })
 
@@ -129,7 +129,9 @@ const CartItem = ({
           )}
         </div>
         <div className="flex flex-col justify-between space-y-2 text-sm">
-          <span>{price}</span>
+          <span>
+            {quantity} x <span style={{ fontWeight: 'bold' }}>{price}</span>
+          </span>
         </div>
       </div>
       {variant === 'default' && (

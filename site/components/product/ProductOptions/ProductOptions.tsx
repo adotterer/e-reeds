@@ -21,8 +21,29 @@ const ProductOptions: React.FC<ProductOptionsProps> = ({
           <h2 className="uppercase font-medium text-sm tracking-wide">
             {opt.displayName}
           </h2>
-          <div role="listbox" className="flex flex-row py-4">
-            {opt.values.map((v, i: number) => {
+          {/* <div role="listbox" className="flex flex-row py-4"> */}
+          <div className="modifiers-dropdowns">
+            <select>
+              {opt.values.map((v, i: number) => {
+                return (
+                  <option
+                    key={`${opt.id}-${i}`}
+                    onClick={() => {
+                      setSelectedOptions((selectedOptions) => {
+                        return {
+                          ...selectedOptions,
+                          [opt.displayName.toLowerCase()]:
+                            v.label.toLowerCase(),
+                        }
+                      })
+                    }}
+                  >
+                    {v.label}
+                  </option>
+                )
+              })}
+            </select>
+            {/* {opt.values.map((v, i: number) => {
               const active = selectedOptions[opt.displayName.toLowerCase()]
               return (
                 <Swatch
@@ -41,7 +62,7 @@ const ProductOptions: React.FC<ProductOptionsProps> = ({
                   }}
                 />
               )
-            })}
+            })} */}
           </div>
         </div>
       ))}

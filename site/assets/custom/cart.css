@@ -1,0 +1,20 @@
+.variant-label,
+.variant-value {
+  font-size: 0.9em;
+  font-style: normal;
+
+  font-size: 11px;
+  line-height: 120%;
+  /* or 13px */
+
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+.variant-value {
+  /* display: block; */
+
+  font-weight: 400;
+}
+.variant-label {
+  font-weight: 600;
+}

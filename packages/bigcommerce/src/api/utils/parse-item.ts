@@ -20,9 +20,20 @@ export const parseWishlistItem = (
   variant_id: Number(item.variantId),
 })
 
-export const parseCartItem = (item: CartItemBody): BCCartItemBody => ({
-  quantity: item.quantity,
-  product_id: Number(item.productId),
-  variant_id: Number(item.variantId),
-  option_selections: item.optionSelections,
-})
+export const parseCartItem = (item: CartItemBody): BCCartItemBody => {
+  // console.log('.'.padEnd(36, '&'))
+  // console.log('.'.padEnd(36, '&'))
+  // console.log('.'.padEnd(36, '&'))
+  // console.log('.'.padEnd(36, '&'))
+  // console.log(item, 'item')
+  // console.log('.'.padEnd(36, '&'))
+  // console.log('.'.padEnd(36, '&'))
+  // console.log('.'.padEnd(36, '&'))
+  // console.log('.'.padEnd(36, '&'))
+  return {
+    quantity: item.quantity,
+    product_id: Number(item.productId),
+    variant_id: Number(item.variantId),
+    option_selections: item.optionSelections,
+  }
+}

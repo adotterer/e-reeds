@@ -17,9 +17,9 @@ const Hero: FC<HeroProps> = ({ headline, description }) => {
           <h2 className={s.title}>{headline}</h2>
           <div className={s.description}>
             <p>{description}</p>
-            <Link href="/">
+            <Link href="/product/shaped-oboe-cane-2">
               <a className="flex items-center text-accent-0 pt-3 font-bold hover:underline cursor-pointer w-max-content">
-                Read it here
+                Buy now
                 <ArrowRight width="20" heigh="20" className="ml-1" />
               </a>
             </Link>

@@ -43,7 +43,6 @@ export default function Home({
   const featuredIds = [170, 176, 178]
 
   const sortedProducts = products.reduce((accum: Product[], curr) => {
-    // console.log(Number(curr.id), 'ab')
     if (featuredIds.includes(Number(curr.id))) {
       accum.push(curr)
     }
@@ -71,8 +70,8 @@ export default function Home({
         ))}
       </Marquee>
       <Hero
-        headline="Now Selling Oboe Cane"
-        description="Know what you're looking for, and want to throw away less?"
+        headline="Now Selling Custom Oboe Cane"
+        description="Looking to make the perfect reed?"
       />
       <Grid layout="B" variant="filled">
         {products.slice(0, 3).map((product: any, i: number) => (

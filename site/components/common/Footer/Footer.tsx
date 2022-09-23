@@ -30,7 +30,7 @@ const Footer: FC<Props> = ({ className, pages }) => {
     <footer className={rootClassName}>
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 border-b border-accent-2 py-12 text-primary bg-primary transition-colors duration-150">
-          <div className="col-span-1 lg:col-span-2">
+          {/* <div className="col-span-1 lg:col-span-2">
             <Link href="/">
               <a className="flex flex-initial items-center font-bold md:mr-24">
                 <span className="rounded-full border border-accent-6 mr-2">
@@ -39,7 +39,7 @@ const Footer: FC<Props> = ({ className, pages }) => {
                 <span>Adotterer</span>
               </a>
             </Link>
-          </div>
+          </div> */}
           <div className="col-span-1 lg:col-span-8">
             <div className="grid md:grid-rows-4 md:grid-cols-3 md:grid-flow-col">
               {[...links, ...sitePages].map((page) => (
@@ -68,9 +68,9 @@ const Footer: FC<Props> = ({ className, pages }) => {
         </div>
         <div className="pt-6 pb-10 flex flex-col md:flex-row justify-between items-center space-y-4 text-accent-6 text-sm">
           <div>
-            <span>&copy; 2020 ACME, Inc. All rights reserved.</span>
+            <span>&copy; 2022 Andrew Dotterer</span>
           </div>
-          <div className="flex items-center text-primary text-sm">
+          {/* <div className="flex items-center text-primary text-sm">
             <span className="text-primary">Created by</span>
             <a
               rel="noopener noreferrer"
@@ -84,7 +84,7 @@ const Footer: FC<Props> = ({ className, pages }) => {
                 alt="Vercel.com Logo"
               />
             </a>
-          </div>
+          </div> */}
         </div>
       </Container>
     </footer>

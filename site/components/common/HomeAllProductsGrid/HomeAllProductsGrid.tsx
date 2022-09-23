@@ -35,7 +35,7 @@ const HomeAllProductsGrid: FC<Props> = ({
               </li>
             ))}
           </ul>
-          <ul className="">
+          {/* <ul className="">
             <li className="py-1 text-base font-bold tracking-wide">
               <Link href={getDesignerPath('')}>
                 <a>All Designers</a>
@@ -48,7 +48,7 @@ const HomeAllProductsGrid: FC<Props> = ({
                 </Link>
               </li>
             ))}
-          </ul>
+          </ul> */}
         </div>
       </div>
       <div className="flex-1">

@@ -73,9 +73,6 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
         )}
       </div>
       <div className="mt-6">
-        <Collapse title="Description">
-          Professional oboe reed, American scrape
-        </Collapse>
         {/* <Collapse title="Care">
           This is a limited edition production run. Printing starts when the
           drop ends.

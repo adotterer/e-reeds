@@ -1,25 +1,25 @@
 {
-  "title": "Oboe Reeds For Sale",
-  "titleTemplate": "%s - Oboe Reeds",
-  "description": "Professional Handmade Oboe Reeds",
+  "title": "Oboe Reeds & Cane",
+  "titleTemplate": "%s - Oboe Reeds & Cane",
+  "description": "Professional handmade oboe reeds, gouged, and shaped cane",
   "openGraph": {
     "title": "Professional Handmade Oboe Reeds Delivered to You",
-    "description": "Oboe Reeds For Sale - https://reeds.adotterer.com/",
+    "description": "Buy oboe reeds and cane, made with professional standards in mind. Customize your order to the diameter, hardness, and shape of your specifications.",
     "type": "website",
     "url": "https://reeds.adotterer.com/",
-    "site_name": "Oboe Reeds ",
+    "site_name": "Oboe Reeds & Cane",
     "images": [
       {
         "url": "/reed.png",
-        "width": "187",
-        "height": "600",
+        "width": "45",
+        "height": "150",
         "alt": "Professional Oboe Reed"
       }
     ]
   },
   "twitter": {
-    "handle": "@nextjs",
-    "site": "@nextjs",
-    "cardType": "summary_large_image"
+    "handle": "",
+    "site": "",
+    "cardType": ""
   }
 }

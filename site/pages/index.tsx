@@ -40,7 +40,7 @@ export async function getStaticProps({
 export default function Home({
   products,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const featuredIds = [170, 176, 178]
+  const featuredIds = [170, 176, 178, 180]
 
   const sortedProducts = products.reduce((accum: Product[], curr) => {
     if (featuredIds.includes(Number(curr.id))) {

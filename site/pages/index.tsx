@@ -3,6 +3,7 @@ import { useMemo } from 'react'
 import { Layout } from '@components/common'
 import { ProductCard } from '@components/product'
 import { Grid, Marquee, Hero } from '@components/ui'
+import { Product } from '@vercel/commerce/types/product'
 // import HomeAllProductsGrid from '@components/common/HomeAllProductsGrid'
 import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 
@@ -39,17 +40,16 @@ export async function getStaticProps({
 export default function Home({
   products,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  console.log('Products ---->', products)
-  // console.log('I only want to see the one hoodie')
   const featuredIds = [170, 176, 178]
-  const sortedProducts = products.reduce((accum, curr) => {
-    console.log(Number(curr.id), 'ab')
+
+  const sortedProducts = products.reduce((accum: Product[], curr) => {
+    // console.log(Number(curr.id), 'ab')
     if (featuredIds.includes(Number(curr.id))) {
       accum.push(curr)
     }
     return accum
   }, [])
-  console.log(sortedProducts, 'sorted products')
+
   return (
     <>
       <Grid variant="filled">

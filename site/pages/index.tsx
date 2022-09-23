@@ -1,4 +1,5 @@
 import commerce from '@lib/api/commerce'
+import { useMemo } from 'react'
 import { Layout } from '@components/common'
 import { ProductCard } from '@components/product'
 import { Grid, Marquee, Hero } from '@components/ui'
@@ -12,7 +13,7 @@ export async function getStaticProps({
 }: GetStaticPropsContext) {
   const config = { locale, locales }
   const productsPromise = commerce.getAllProducts({
-    variables: { first: 6 },
+    variables: { featured: true },
     config,
     preview,
     // Saleor provider only
@@ -38,12 +39,21 @@ export async function getStaticProps({
 export default function Home({
   products,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  // console.log('Products ---->', products)
+  console.log('Products ---->', products)
   // console.log('I only want to see the one hoodie')
+  const featuredIds = [170, 176, 178]
+  const sortedProducts = products.reduce((accum, curr) => {
+    console.log(Number(curr.id), 'ab')
+    if (featuredIds.includes(Number(curr.id))) {
+      accum.push(curr)
+    }
+    return accum
+  }, [])
+  console.log(sortedProducts, 'sorted products')
   return (
     <>
       <Grid variant="filled">
-        {products.slice(0, 3).map((product: any, i: number) => (
+        {sortedProducts.map((product: any, i: number) => (
           <ProductCard
             key={product.id}
             product={product}
@@ -56,13 +66,13 @@ export default function Home({
         ))}
       </Grid>
       <Marquee variant="secondary">
-        {products.slice(0, 3).map((product: any, i: number) => (
+        {products.slice(0, 8).map((product: any, i: number) => (
           <ProductCard key={product.id} product={product} variant="slim" />
         ))}
       </Marquee>
       <Hero
-        headline=" Dessert dragée halvah croissant."
-        description="Cupcake ipsum dolor sit amet lemon drops pastry cotton candy. Sweet carrot cake macaroon bonbon croissant fruitcake jujubes macaroon oat cake. Soufflé bonbon caramels jelly beans. Tiramisu sweet roll cheesecake pie carrot cake. "
+        headline="Now Selling Oboe Cane"
+        description="Know what you're looking for, and want to throw away less?"
       />
       <Grid layout="B" variant="filled">
         {products.slice(0, 3).map((product: any, i: number) => (

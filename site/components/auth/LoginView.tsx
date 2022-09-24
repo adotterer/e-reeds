@@ -34,6 +34,7 @@ const LoginView: React.FC = () => {
       setLoading(false)
       closeModal()
     } catch (e: any) {
+      console.log(e.errors, 'e.errors')
       setMessage(e.errors[0].message)
       setLoading(false)
       setDisabled(false)
@@ -60,7 +61,7 @@ const LoginView: React.FC = () => {
       className="w-80 flex flex-col justify-between p-3"
     >
       <div className="flex justify-center pb-12 ">
-        <Logo/>
+        <Logo />
       </div>
       <div className="flex flex-col space-y-3">
         {message && (

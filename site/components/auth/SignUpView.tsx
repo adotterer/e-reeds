@@ -32,12 +32,13 @@ const SignUpView: FC<Props> = () => {
     try {
       setLoading(true)
       setMessage('')
-      await signup({
+      const res = await signup({
         email,
         firstName,
         lastName,
         password,
       })
+      console.log(res, 'res?')
       setLoading(false)
       closeModal()
     } catch ({ errors }) {

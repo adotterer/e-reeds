@@ -14,7 +14,25 @@ interface ProductViewProps {
   product: Product
   relatedProducts: Product[]
 }
+function shuffle(array: any[]) {
+  let currentIndex = array.length,
+    randomIndex
 
+  // While there remain elements to shuffle.
+  while (currentIndex != 0) {
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex)
+    currentIndex--
+
+    // And swap it with the current element.
+    ;[array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ]
+  }
+
+  return array
+}
 const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
   const { price } = usePrice({
     amount: product.price.value,
@@ -68,24 +86,25 @@ const ProductView: FC<ProductViewProps> = ({ product, relatedProducts }) => {
         <section className="py-12 px-6 mb-10">
           <Text variant="sectionHeading">Related Products</Text>
           <div className={s.relatedProductsGrid}>
-            {relatedProducts.map((p) => (
-              <div
-                key={p.path}
-                className="animated fadeIn bg-accent-0 border border-accent-2"
-              >
-                <ProductCard
-                  noNameTag
-                  product={p}
+            {shuffle(relatedProducts)
+              .slice(0, 8)
+              .map((p) => (
+                <div
                   key={p.path}
-                  variant="simple"
-                  className="animated fadeIn"
-                  imgProps={{
-                    width: 300,
-                    height: 300,
-                  }}
-                />
-              </div>
-            ))}
+                  className="animated fadeIn bg-accent-0 border border-accent-2"
+                >
+                  <ProductCard
+                    product={p}
+                    key={p.path}
+                    variant="simple"
+                    className="animated fadeIn"
+                    imgProps={{
+                      width: 300,
+                      height: 300,
+                    }}
+                  />
+                </div>
+              ))}
           </div>
         </section>
       </Container>

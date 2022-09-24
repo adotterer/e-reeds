@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import commerce from '@lib/api/commerce'
 import { Layout } from '@components/common'
 import { ProductView } from '@components/product'
-
+import { Product } from '@vercel/commerce/types/product'
 export async function getStaticProps({
   params,
   locale,
@@ -24,7 +24,7 @@ export async function getStaticProps({
   })
 
   const allProductsPromise = commerce.getAllProducts({
-    variables: { first: 4 },
+    variables: { first: 30 },
     config,
     preview,
   })
@@ -37,11 +37,28 @@ export async function getStaticProps({
     throw new Error(`Product with slug '${params!.slug}' not found`)
   }
 
+  const removeShaperTips: Product[] = relatedProducts.reduce(
+    (accum: Product[], curr) => {
+      // console.log('curr'.padStart(25, '-'), curr)
+      // console.log('curr.path', curr.path)
+      if (curr.path?.includes('oboe') || curr.path?.includes('cane')) {
+        accum.push(curr)
+      }
+      return accum
+    },
+    []
+  )
+  // console.log('.'.padEnd(300, '.'))
+  // console.log('.'.padEnd(300, '.'))
+  // console.log(removeShaperTips)
+  // console.log('.'.padEnd(300, '.'))
+  // console.log('.'.padEnd(300, '.'))
+  // console.log('.'.padEnd(300, '.'))
   return {
     props: {
       pages,
       product,
-      relatedProducts,
+      relatedProducts: removeShaperTips,
       categories,
     },
     revalidate: 200,
@@ -70,7 +87,7 @@ export default function Slug({
   relatedProducts,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter()
-
+  console.log('related Products', relatedProducts)
   return router.isFallback ? (
     <h1>Loading...</h1>
   ) : (

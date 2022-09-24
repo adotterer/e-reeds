@@ -53,8 +53,6 @@ export default function Home({
     return accum
   }, [])
 
-  console.log(sortedProducts, 'sorted Products')
-
   return (
     <>
       <Grid variant="filled">

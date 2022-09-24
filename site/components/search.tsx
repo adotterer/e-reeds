@@ -166,7 +166,10 @@ export default function Search({ categories, brands }: SearchPropsType) {
           </div>
 
           {/* Designs */}
-          <div className="relative inline-block w-full">
+          <div
+            className="relative inline-block w-full"
+            style={{ display: 'none' }}
+          >
             <div className="lg:hidden mt-3">
               <span className="rounded-md shadow-sm">
                 <button

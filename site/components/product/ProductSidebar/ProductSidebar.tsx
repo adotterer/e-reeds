@@ -20,7 +20,7 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
   const addItem = useAddItem()
   const { openSidebar, setSidebarView } = useUI()
   const [loading, setLoading] = useState(false)
-  const isCane: boolean = [176, 178, 181].includes(Number(product.id))
+  const isCane: boolean = [176, 178, 181, 182, 183].includes(Number(product.id))
   const [quantity, setQuantity] = useState(isCane ? 5 : 1)
   const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>({})
 

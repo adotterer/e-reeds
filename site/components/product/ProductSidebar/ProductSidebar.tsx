@@ -1,9 +1,9 @@
 import s from './ProductSidebar.module.css'
 import { useAddItem } from '@framework/cart'
-import { FC, useEffect, useState } from 'react'
+import { ChangeEvent, FC, useEffect, useState } from 'react'
 import { ProductOptions } from '@components/product'
 import type { Product } from '@commerce/types/product'
-// import Quantity from '@components/ui/Quantity'
+import Quantity from '@components/ui/Quantity'
 import { Button, Text, Rating, Collapse, useUI } from '@components/ui'
 import {
   getProductVariant,
@@ -23,6 +23,12 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
   const isCane: boolean = [176, 178].includes(Number(product.id))
   const [quantity, setQuantity] = useState(isCane ? 5 : 1)
   const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>({})
+
+  const increaseQuantity = async (n = 1) => {
+    if (isCane && n < 0 && quantity === 5) return
+    const val = Number(quantity) + n
+    setQuantity(val)
+  }
 
   useEffect(() => {
     selectDefaultOptionFromProduct(product, setSelectedOptions)
@@ -46,6 +52,12 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
       setLoading(false)
     }
   }
+  const handleChange = async ({
+    target: { value },
+  }: ChangeEvent<HTMLInputElement>) => {
+    if (isCane && Number(value) < 5) return
+    return setQuantity(Number(value))
+  }
 
   return (
     <div className={className}>
@@ -68,7 +80,15 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
         <label className="quantityLabel" htmlFor="quantity">
           QUANTITY:
         </label>
-        <input
+        <Quantity
+          value={quantity}
+          handleRemove={() => setQuantity(0)}
+          handleChange={handleChange}
+          max={50}
+          increase={() => increaseQuantity(1)}
+          decrease={() => increaseQuantity(-1)}
+        />
+        {/* <input
           type="number"
           id="pdp-quantity"
           name="quantity"
@@ -76,7 +96,7 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
           value={quantity}
           min={isCane ? 5 : 1}
           max="50"
-        />
+        /> */}
         {process.env.COMMERCE_CART_ENABLED && (
           <Button
             aria-label="Add to Cart"

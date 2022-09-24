@@ -44,7 +44,11 @@ export default function Home({
 
   const sortedProducts = products.reduce((accum: Product[], curr) => {
     if (featuredIds.includes(Number(curr.id))) {
-      accum.push(curr)
+      if (curr.name.includes('Professional')) {
+        accum.unshift(curr)
+      } else {
+        accum.push(curr)
+      }
     }
     return accum
   }, [])

@@ -68,32 +68,28 @@ export default function Home({
           />
         ))}
       </Grid>
+
       <Marquee variant="secondary">
         {products.slice(0, 8).map((product: any, i: number) => (
           <ProductCard key={product.id} product={product} variant="slim" />
         ))}
       </Marquee>
       <Hero
-        headline="Now Selling Custom Oboe Cane"
-        description="Looking to make the perfect reed?"
+        url="/product/oboe-reed"
+        headline="Build Your Own Reed"
+        description="Customize the staple, diameter, hardness, and shape."
       />
-      <Grid layout="B" variant="filled">
-        {products.slice(0, 3).map((product: any, i: number) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            imgProps={{
-              width: i === 0 ? 1080 : 540,
-              height: i === 0 ? 1080 : 540,
-            }}
-          />
-        ))}
-      </Grid>
+
       <Marquee>
-        {products.slice(3).map((product: any, i: number) => (
+        {products.map((product: any, i: number) => (
           <ProductCard key={product.id} product={product} variant="slim" />
         ))}
       </Marquee>
+      <Hero
+        url="/search/cane"
+        headline="Let us do the sorting"
+        description="Customize your cane to your specifications. Orders over $100 ship free!"
+      />
       {/* <HomeAllProductsGrid
         newestProducts={products}
         categories={categories}

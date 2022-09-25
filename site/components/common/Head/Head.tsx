@@ -3,6 +3,8 @@ import { useEffect } from 'react'
 import { SEO } from '@components/common'
 import Script from 'next/script'
 
+const gacode = process.env.NEXTJS_G as String
+
 const Head: VFC = () => {
   return (
     <>
@@ -15,15 +17,16 @@ const Head: VFC = () => {
         <link rel="manifest" href="/site.webmanifest" key="site-manifest" />
       </SEO>
       <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXTJS_GA}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=UA-154751259-2`}
         strategy="afterInteractive"
       />
       <Script id="google-analytics" strategy="afterInteractive">
         {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', ${process.env.NEXTJS_GA});
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+       
+         gtag('config', 'UA-154751259-2');
         `}
       </Script>
     </>

@@ -26,7 +26,7 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
 
   const hasShapes = useMemo(
     () =>
-      product.options.some((option) => option.displayName.includes('Shapes')),
+      product.options.some((option) => option.displayName.includes('Shape')),
     [product]
   )
   console.log(hasShapes, 'hashapes')

@@ -12,6 +12,7 @@ interface Props {
   className?: string
   product: Product
   noNameTag?: boolean
+  smallNameTag?: boolean
   imgProps?: Omit<ImageProps, 'src' | 'layout' | 'placeholder' | 'blurDataURL'>
   variant?: 'default' | 'slim' | 'simple'
 }
@@ -23,6 +24,7 @@ const ProductCard: FC<Props> = ({
   imgProps,
   className,
   noNameTag = false,
+  smallNameTag = false,
   variant = 'default',
 }) => {
   const { price } = usePrice({
@@ -72,12 +74,18 @@ const ProductCard: FC<Props> = ({
             )}
             {!noNameTag && (
               <div className={s.header}>
-                <h3 className={s.name}>
-                  <span>{product.name}</span>
+                <h3
+                  className={smallNameTag ? 'smallNameBox ' + s.name : s.name}
+                >
+                  <span className={smallNameTag ? 'smallName' : ''}>
+                    {product.name}
+                  </span>
                 </h3>
-                <div className={s.price}>
-                  {`${price} ${product.price?.currencyCode}`}
-                </div>
+                {!smallNameTag && (
+                  <div className={s.price}>
+                    {`${price} ${product.price?.currencyCode}`}
+                  </div>
+                )}
               </div>
             )}
             <div className={s.imageContainer}>

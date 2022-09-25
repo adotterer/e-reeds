@@ -1,6 +1,6 @@
 import s from './ProductSidebar.module.css'
 import { useAddItem } from '@framework/cart'
-import { ChangeEvent, FC, useEffect, useState } from 'react'
+import { ChangeEvent, FC, useEffect, useState, useMemo } from 'react'
 import { ProductOptions } from '@components/product'
 import type { Product } from '@commerce/types/product'
 import Quantity from '@components/ui/Quantity'
@@ -24,6 +24,12 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
   const [quantity, setQuantity] = useState(isCane ? 5 : 1)
   const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>({})
 
+  const hasShapes = useMemo(
+    () =>
+      product.options.some((option) => option.displayName.includes('Shapes')),
+    [product]
+  )
+  console.log(hasShapes, 'hashapes')
   const increaseQuantity = async (n = 1) => {
     if (isCane && n < 0 && quantity === 5) return
     const val = Number(quantity) + n
@@ -66,16 +72,44 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
         selectedOptions={selectedOptions}
         setSelectedOptions={setSelectedOptions}
       />
+      <br />
       <Collapse title="Description">
         <Text
           className="pb-4 break-words w-full max-w-xl"
           html={product.descriptionHtml || product.description}
         />
       </Collapse>
-      <div className="flex flex-row justify-between items-center">
+      <br />
+      {hasShapes && (
+        <Collapse title="Shape Guide">
+          <div id="shapeGuide">
+            <p>Narrow Shapes:&nbsp;</p>
+            <ul>
+              <li>BRANNEN</li>
+              <li>AMY</li>
+            </ul>
+            <p>Medium/Narrow Shapes:&nbsp;</p>
+            <ul>
+              <li>MACK PFEIFFER</li>
+              <li>RM</li>
+            </ul>
+            <p>Medium/Wide Shapes:</p>
+            <ul>
+              <li>MACK++</li>
+              <li>LUCARELLI</li>
+            </ul>
+            <p>Wide Shapes:&nbsp;</p>
+            <ul>
+              <li>KLOPFER 690</li>
+            </ul>
+          </div>
+        </Collapse>
+      )}
+      {/* <div className="flex flex-row justify-between items-center">
         <Rating value={5} />
-        {/* <div className="text-accent-6 pr-1 font-medium text-sm">36 reviews</div> */}
-      </div>
+        <div className="text-accent-6 pr-1 font-medium text-sm">36 reviews</div>
+      </div> */}
+      <br />
       <div id="quanAddContainer">
         <label className="quantityLabel" htmlFor="quantity">
           QUANTITY:
@@ -88,6 +122,7 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
           increase={() => increaseQuantity(1)}
           decrease={() => increaseQuantity(-1)}
         />
+        <br />
         {/* <input
           type="number"
           id="pdp-quantity"

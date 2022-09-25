@@ -19,3 +19,14 @@
 #quanAddContainer {
   margin: 0.5rem;
 }
+
+#shapeGuide p {
+  margin-top: 0.8rem;
+}
+#shapeGuide ul {
+  list-style-type: disc;
+}
+
+#shapeGuide ul li {
+  margin-left: 30px;
+}

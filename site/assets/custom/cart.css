@@ -18,3 +18,15 @@
 .variant-label {
   font-weight: 600;
 }
+
+.smallName {
+  font-size: 0.8em !important;
+  line-height: 110% !important;
+}
+h3.smallNameBox span {
+  padding: 0.5rem !important;
+}
+h3.smallNameBox {
+  font-size: 0.9em !important;
+  line-height: 2.1em !important;
+}

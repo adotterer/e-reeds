@@ -1,4 +1,4 @@
-import type { GetStaticPropsContext } from 'next'
+import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import useCart from '@framework/cart/use-cart'
 import usePrice from '@framework/product/use-price'
 import commerce from '@lib/api/commerce'
@@ -7,6 +7,10 @@ import { Button, Text, Container } from '@components/ui'
 import { Bag, Cross, Check, MapPin, CreditCard } from '@components/icons'
 import { CartItem } from '@components/cart'
 import { useUI } from '@components/ui/context'
+import { Marquee } from '@components/ui'
+import s from '../components/product/ProductView/ProductView.module.css'
+import { ProductCard } from '@components/product'
+import { ProductView } from '@components/product'
 
 export async function getStaticProps({
   preview,
@@ -14,16 +18,30 @@ export async function getStaticProps({
   locales,
 }: GetStaticPropsContext) {
   const config = { locale, locales }
-  const pagesPromise = commerce.getAllPages({ config, preview })
+  // const pagesPromise = commerce.getAllPages({ config, preview })
   const siteInfoPromise = commerce.getSiteInfo({ config, preview })
-  const { pages } = await pagesPromise
+
+  // const { pages } = await pagesPromise
   const { categories } = await siteInfoPromise
+  const productsPromise = commerce.getAllProducts({
+    variables: { first: 50 },
+  })
+  const { products } = await productsPromise
   return {
-    props: { pages, categories },
+    props: {
+      products: products.filter(
+        (product) =>
+          product.name.includes('Cane') || product.name.includes('Reed')
+      ),
+      categories,
+    },
   }
 }
 
-export default function Cart() {
+export default function Cart({
+  products,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  console.log(products, 'pages')
   const error = null
   const success = null
   const { data, isLoading, isEmpty } = useCart()
@@ -94,12 +112,33 @@ export default function Cart() {
                 />
               ))}
             </ul>
-            {/* <div className="my-6">
-              <Text>
-                Before you leave, take a look at these items. We picked them
-                just for you
+            <br />
+            <section className="">
+              <Text variant="sectionHeading">
+                You may be interested in these...
               </Text>
-            </div> */}
+              <div className={s.relatedProductsGrid}>
+                {products.slice(0, 8).map((product: any, i: number) => (
+                  <div
+                    key={product.path}
+                    className="animated fadeIn bg-accent-0 border border-accent-2"
+                  >
+                    <ProductCard
+                      // noNameTag
+                      smallNameTag
+                      product={product}
+                      key={product.path}
+                      variant="simple"
+                      className="animated fadeIn"
+                      imgProps={{
+                        width: 300,
+                        height: 300,
+                      }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </section>
           </div>
         )}
       </div>

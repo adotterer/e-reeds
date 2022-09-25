@@ -37,8 +37,8 @@ export default function CustomerMenuContent() {
   return (
     <DropdownContent
       asChild
-      side="bottom"
-      sideOffset={10}
+      side="left"
+      sideOffset={40}
       className={s.root}
       id="CustomerMenuContent"
     >

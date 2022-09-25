@@ -28,7 +28,7 @@ const loginEndpoint: GetAPISchema<
       error instanceof CommerceAPIError
         ? 'An unexpected error ocurred with the Commerce API'
         : 'An unexpected error ocurred'
-
+    console.log('about to send result'.padEnd(55, '.'))
     res.status(500).json({ data: null, errors: [{ message }] })
   }
 }

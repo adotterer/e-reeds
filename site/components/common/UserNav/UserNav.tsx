@@ -67,7 +67,8 @@ const UserNav: React.FC<{
           </li>
         )}
         {process.env.COMMERCE_CUSTOMERAUTH_ENABLED && (
-          <li className={s.item}>
+          <li className="customerMenuIconLi">
+            {/* {console.log(s.item, 's.item')} */}
             <Dropdown>
               <DropdownTrigger>
                 <button
